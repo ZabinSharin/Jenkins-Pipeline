@@ -1,0 +1,63 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Using Maven automation tool to build the code"
+            }
+        }
+
+        stage('Unit and Integration Tests') {
+            steps {
+                echo "Running unit tests"
+                echo "Running integration tests"
+            }
+        }
+
+        stage('Code Analysis') {
+            steps {
+                echo "Checking the quality of the code and Integrating with SonarQube to analyze the code"
+            }
+        }
+
+        stage('Security Scan') {
+            steps {
+                echo "Integrating a security scanning tool to scan your code using OWASP ZAP"
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                echo "Deploying the application to a staging server with AWS EC2"
+            }
+        }
+
+        stage('Integration Tests on Staging') {
+            steps {
+                echo "Running integration tests on the staging environment"
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+                echo "Deploying the code to the production environment"
+            }
+        }
+        post {
+        failure {
+            // Send email notification in case of failure
+                mail to: "ziyakhan832@gmail.com"
+                subject: "Pipeline Failed",
+                body: "The Jenkins pipeline has failed.",
+            }
+        success {
+            // Send email notification on success
+                mail to: "ziyakhan832@gmail.com"
+                subject: "Pipeline Failed",
+                body: "The Jenkins pipeline has failed.",
+            }
+        }
+    }
+
+}
