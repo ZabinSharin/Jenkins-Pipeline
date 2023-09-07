@@ -44,20 +44,20 @@ pipeline {
                 echo "Deploying the code to the production environment"
             }
         }
-    }
-    post {
+        post {
         failure {
             // Send email notification in case of failure
                 mail to: "ziyakhan832@gmail.com"
                 subject: "Pipeline Failed",
                 body: "The Jenkins pipeline has failed.",
-                }
+            }
         success {
             // Send email notification on success
                 mail to: "ziyakhan832@gmail.com"
                 subject: "Pipeline Failed",
                 body: "The Jenkins pipeline has failed.",
-                }
             }
-
         }
+    }
+
+}
