@@ -6,21 +6,6 @@ pipeline {
             steps {
                 echo "Using Maven automation tool to build the code"
             }
-post {
-        failure {
-            // Send email notification in case of failure
-                mail to: "ziyakhan832@gmail.com"
-                subject: "Pipeline Failed",
-                body: "The Jenkins pipeline has failed.",
-            }
-        success {
-            // Send email notification on success
-                mail to: "ziyakhan832@gmail.com"
-                subject: "Pipeline Failed",
-                body: "The Jenkins pipeline has failed.",
-            }
-        }
-    }
         }
 
         stage('Unit and Integration Tests') {
@@ -62,15 +47,19 @@ post {
         post {
         failure {
             // Send email notification in case of failure
-                mail to: "ziyakhan832@gmail.com"
+                emailext(
+                to: "ziyakhan832@gmail.com"
                 subject: "Pipeline Failed",
                 body: "The Jenkins pipeline has failed.",
+                )
             }
         success {
             // Send email notification on success
-                mail to: "ziyakhan832@gmail.com"
+                emailext(
+                to: "ziyakhan832@gmail.com"
                 subject: "Pipeline Failed",
                 body: "The Jenkins pipeline has failed.",
+                )
             }
         }
     }
