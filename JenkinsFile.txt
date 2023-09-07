@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        DIRECTORY_PATH = "/Users/sharu/Documents/Deakin/ⓣ⓶/SIT753"
+        TESTING_ENVIRONMENT = "User Acceptance Testing (UAT) environment"
+        PRODUCTION_ENVIRONMENT = "Zabin Sharin Parves Ahamed production environment"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Fetching the source code from the directory path specified by the environment variable: ${DIRECTORY_PATH}"
+                echo "Compiling the code and generating any necessary artifacts."
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running unit tests"
+                echo "Running integration tests"
+            }
+        }
+
+        stage('Code') {
+            steps {
+                echo "Checking the quality of the code"
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying the application to the testing environment specified by the environment variable: ${TESTING_ENVIRONMENT}"
+            }
+        }
+
+        stage('Approval') {
+            steps {
+                echo "Waiting for manual approval."
+                sleep(time: 10, unit: 'SECONDS')
+                echo "Manual approval received."
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+                echo "Deploying the code to the production environment: ${PRODUCTION_ENVIRONMENT}"
+            }
+        }
+    }
+}
