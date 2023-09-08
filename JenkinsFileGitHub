@@ -16,15 +16,17 @@ pipeline {
             post {
                 success {
                     // Send a success notification email
-                        mail to: "ziyakhan832@gmail.com",
-                        subject: "Test Stage Successful",
-                        body: "Unit and integration tests passed."
+                        emailext attachLog: true,
+                        body: 'Unit and integration tests passed.',
+                        subject: 'Test Stage Successful.',
+                        to: 'ziyakhan832@gmail.com'
                 }
                 failure {
                     // Send a failure notification email
-                        mail to: "ziyakhan832@gmail.com",
-                        subject: "Test Stage Failed",
-                        body: "Unit and integration tests failed."
+                        emailext attachLog: true,
+                        body: 'Unit and integration tests failed.',
+                        subject: 'Test Stage Failed',
+                        to: 'ziyakhan832@gmail.com'
                 }
             }
         }
