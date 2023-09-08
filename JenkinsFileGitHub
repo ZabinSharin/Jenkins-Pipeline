@@ -13,6 +13,26 @@ pipeline {
                 echo "Running unit tests"
                 echo "Running integration tests"
             }
+            post {
+                success {
+                    // Send a success notification email
+                    emailext(
+                        subject: 'Test Stage Successful',
+                        body: 'Unit and integration tests passed.',
+                        to: 'ziyakhan832@gmail.com',
+                        attachLog: true
+                    )
+                }
+                failure {
+                    // Send a failure notification email
+                    emailext(
+                        subject: 'Test Stage Failed',
+                        body: 'Unit and integration tests failed.',
+                        to: 'ziyakhan832@gmail.com',
+                        attachLog: true
+                    )
+                }
+            }
         }
 
         stage('Code Analysis') {
@@ -24,6 +44,26 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo "Integrating a security scanning tool to scan your code using OWASP ZAP"
+            }
+            post {
+                success {
+                    // Send a success notification email
+                    emailext(
+                        subject: 'Security Scan Stage Successful',
+                        body: 'Security scan passed.',
+                        to: 'ziyakhan832@gmail.com',
+                        attachLog: true
+                    )
+                }
+                failure {
+                    // Send a failure notification email
+                    emailext(
+                        subject: 'Security Scan Stage Failed',
+                        body: 'Security scan failed.',
+                        to: 'ziyakhan832@gmail.com',
+                        attachLog: true
+                    )
+                }
             }
         }
 
@@ -43,24 +83,6 @@ pipeline {
             steps {
                 echo "Deploying the code to the production environment"
             }
-        }
-    }
-    post {
-        failure {
-            // Send email notification in case of failure
-            emailext(
-                subject: "Pipeline Failed",
-                body: "The Jenkins pipeline has failed.",
-                to: "ziyakhan832@gmail.com"
-            )
-        }
-        success {
-            // Send email notification on success
-            emailext(
-                subject: "Pipeline Successful",
-                body: "The Jenkins pipeline has completed successfully.",
-                to: "ziyakhan832@gmail.com"
-            )
         }
     }
 
