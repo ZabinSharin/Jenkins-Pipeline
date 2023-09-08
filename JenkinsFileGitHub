@@ -16,17 +16,15 @@ pipeline {
             post {
                 success {
                     // Send a success notification email
-                        emailext to: "ziyakhan832@gmail.com",
+                        mail to: "ziyakhan832@gmail.com",
                         subject: "Test Stage Successful",
-                        body: "Unit and integration tests passed.",
-                        attachLog: true
+                        body: "Unit and integration tests passed."
                 }
                 failure {
                     // Send a failure notification email
-                        emailext to: "ziyakhan832@gmail.com",
+                        mail to: "ziyakhan832@gmail.com",
                         subject: "Test Stage Failed",
-                        body: "Unit and integration tests failed.",
-                        attachLog: true
+                        body: "Unit and integration tests failed."
                 }
             }
         }
@@ -44,17 +42,15 @@ pipeline {
             post {
                 success {
                     // Send a success notification email
-                        to: "ziyakhan832@gmail.com",
+                        mail to: "ziyakhan832@gmail.com",
                         subject: "Security Scan Stage Successful",
-                        body: "Security scan passed.",
-                        attachLog: true
+                        body: "Security scan passed."
                 }
                 failure {
                     // Send a failure notification email
-                        to: "ziyakhan832@gmail.com",
+                        mail to: "ziyakhan832@gmail.com",
                         subject: "Security Scan Stage Failed",
-                        body: "Security scan failed.",
-                        attachLog: true
+                        body: "Security scan failed."
                 }
             }
         }
