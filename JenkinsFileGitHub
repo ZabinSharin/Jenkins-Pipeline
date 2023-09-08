@@ -16,10 +16,11 @@ pipeline {
             post {
                 success {
                     // Send a success notification email
-                        emailext (attachLog: true, 
-body: 'Unit and integration tests passed.', 
-subject: 'Test Stage Successful.', 
-to: 'ziyakhan832@gmail.com')
+                        emailext (
+                            attachLog: true, 
+                            body: 'Unit and integration tests passed.', 
+                            subject: 'Test Stage Successful.', 
+                            to: 'ziyakhan832@gmail.com')
                 }
                 failure {
                     // Send a failure notification email
