@@ -44,14 +44,14 @@ pipeline {
             post {
                 success {
                     // Send a success notification email
-                        emailext to: "ziyakhan832@gmail.com",
+                        to: "ziyakhan832@gmail.com",
                         subject: "Security Scan Stage Successful",
                         body: "Security scan passed.",
                         attachLog: true
                 }
                 failure {
                     // Send a failure notification email
-                        emailext to: "ziyakhan832@gmail.com",
+                        to: "ziyakhan832@gmail.com",
                         subject: "Security Scan Stage Failed",
                         body: "Security scan failed.",
                         attachLog: true
